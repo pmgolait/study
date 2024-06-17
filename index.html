@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/pmgolait/pmgolait.github.io/main/images/icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+
+
+        <img src="1.gif" alt=""
+            style="position: absolute; width: 100vw; height: 100vh; top: 0px; left: 0px; object-fit: cover; z-index: 0;">
+
+        <div class="wrapper">
+            <p>
+                <span class="mins">00</span>:<span class="seconds">00</span>:<span class="tens">00</span>
+            </p> <br>
+            <button class="btn-start">Start</button>
+            <button class="btn-stop">Stop</button>
+            <button class="btn-reset">Reset</button>
+        </div>
+        <audio id="audioplayer" controls style="
+            position: absolute;
+            bottom: 1%;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        " controlsList="nodownload noplaybackrate">
+        </audio>
+
+    </div>
+
+
+
+
+    <script>
+            var lastSong = null;
+            var selection = null;
+            var playlist = ["sounds/1.mp3", "sounds/2.mp3", "sounds/3.mp3", "sounds/4.mp3", "sounds/5.mp3", "sounds/6.mp3", "sounds/7.mp3", "sounds/8.mp3", "sounds/9.mp3", "sounds/10.mp3"];
+            var player = document.getElementById("audioplayer"); // Get audio element
+            player.autoplay = false;
+            player.addEventListener("ended", selectRandom); // Run function when the song ends
+
+            function selectRandom() {
+                while (selection == lastSong) { // Repeat until a different song is selected
+                    selection = Math.floor(Math.random() * playlist.length);
+                }
+                lastSong = selection; // Remember the last song
+                player.src = playlist[selection]; // Tell HTML the location of the new song
+            }
+
+            selectRandom(); // Select initial song
+            player.play(); // Start song
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
